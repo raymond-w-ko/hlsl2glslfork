@@ -166,23 +166,23 @@ elseif (UNIX)
     source_group("OSDependent\\Linux" FILES ${OSDEPENDENT_FILES})
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/hlslang/OSDependent/Linux)
 
-    add_custom_command(OUTPUT hlslang/MachineIndependent/hlslang_tab.cpp hlslang/MachineIndependent/hlslang_tab.h 
-                         COMMAND set ARGS "BISON_SIMPLE=../../tools/bison.simple"
-                         COMMAND set ARGS "BISON_HAIRY=../../tools/bison.simple"
-                         COMMAND bison ARGS -o hlslang_tab.cpp -d -t -v hlslang.y
-                         COMMAND mv hlslang_tab.hpp hlslang_tab.h
-                         MAIN_DEPENDENCY hlslang/MachineIndependent/hlslang.y
-                         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/hlslang/MachineIndependent
-                         COMMENT "Executing Bison on hlslang.y"
-                      )
+    #add_custom_command(OUTPUT hlslang/MachineIndependent/hlslang_tab.cpp hlslang/MachineIndependent/hlslang_tab.h 
+                         #COMMAND set ARGS "BISON_SIMPLE=../../tools/bison.simple"
+                         #COMMAND set ARGS "BISON_HAIRY=../../tools/bison.simple"
+                         #COMMAND bison ARGS -o hlslang_tab.cpp -d -t -v hlslang.y
+                         #COMMAND mv hlslang_tab.hpp hlslang_tab.h
+                         #MAIN_DEPENDENCY hlslang/MachineIndependent/hlslang.y
+                         #WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/hlslang/MachineIndependent
+                         #COMMENT "Executing Bison on hlslang.y"
+                      #)
                    
-    add_custom_command(OUTPUT hlslang/MachineIndependent/Gen_hlslang.cpp
-                         COMMAND flex ARGS hlslang.l
-                         MAIN_DEPENDENCY hlslang/MachineIndependent/hlslang.l
-                         DEPENDS hlslang/MachineIndependent/hlslang_tab.h
-                         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/hlslang/MachineIndependent
-                         COMMENT "Executing flex on hlslang.l"
-                      )
+    #add_custom_command(OUTPUT hlslang/MachineIndependent/Gen_hlslang.cpp
+                         #COMMAND flex ARGS hlslang.l
+                         #MAIN_DEPENDENCY hlslang/MachineIndependent/hlslang.l
+                         #DEPENDS hlslang/MachineIndependent/hlslang_tab.h
+                         #WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/hlslang/MachineIndependent
+                         #COMMENT "Executing flex on hlslang.l"
+                      #)
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb")
     SET(TEST_LIBS GL glut GLEW pthread)
 endif ()
