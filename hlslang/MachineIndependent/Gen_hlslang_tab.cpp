@@ -162,19 +162,11 @@ Jutta Degener, 1995
 #include "ParseHelper.h"
 #include "../../include/hlsl2glsl.h"
 
-#ifdef _WIN32
-    #define YYPARSE_PARAM parseContext
-    #define YYPARSE_PARAM_DECL TParseContext&
-    #define YY_DECL int yylex(YYSTYPE* pyylval, TParseContext& parseContext)
-    #define YYLEX_PARAM parseContext
-	void yyerror(const char*);
-#else
-    #define YYPARSE_PARAM parseContextLocal
-    #define parseContext (*((TParseContext*)(parseContextLocal)))
-    #define YY_DECL int yylex(YYSTYPE* pyylval, void* parseContextLocal)
-    #define YYLEX_PARAM (void*)(parseContextLocal)
-    extern void yyerror(const char*);
-#endif
+#define YYPARSE_PARAM parseContext
+#define YYPARSE_PARAM_DECL TParseContext&
+#define YY_DECL int yylex(YYSTYPE* pyylval, TParseContext& parseContext)
+#define YYLEX_PARAM parseContext
+void yyerror(const char*);
 
 
 #define FRAG_ONLY(S, L) {                                                       \
